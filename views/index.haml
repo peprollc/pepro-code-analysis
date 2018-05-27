@@ -1,4 +1,18 @@
-%h1#v-app hoge
+%head
+  %title code-analysis | pepro
+  %script{ type: "text/javascript", src: "https://code.jquery.com/jquery-3.3.1.min.js" }
 
-%footer
-  %script{ type: "text/javascript", src: "/js/main.js" }
+%h1 code-analysis
+%textarea#code{ raw: "3", col: "4"}
+%button#function analysis
+
+:javascript
+  var code = $("#code");
+  $("#function").on("click", function() {
+    $.ajax({
+      type: "POST",
+      url: "/analysis",
+      data: { code: code.val() }
+    });
+  });
+
