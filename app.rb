@@ -6,10 +6,10 @@ get "/" do
   haml :index
 end
 
-post "/analysis" do
-  analyze = Analyzer.new params[:code]
-  if analyze.func
-    data = { result: analyze.stdout, error: analyze.stderr }
+post "/program" do
+  program = Program.new params[:code]
+  if program.func
+    data = { result: program.stdout, error: program.stderr }
     data.to_json
   end
 end
