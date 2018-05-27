@@ -1,1 +1,3 @@
-require_relative "analyzer"
+require "pry"
+require "systemu"
+require_relative "program"
