@@ -6,13 +6,17 @@
 %textarea#code{ raw: "3", col: "4"}
 %button#function analysis
 
+%p#results
+
 :javascript
   var code = $("#code");
   $("#function").on("click", function() {
     $.ajax({
       type: "POST",
       url: "/analysis",
-      data: { code: code.val() }
+      data: { code: code.val() },
+      success: function (data) {
+        $("#results").append(data);
+      }
     });
   });
-

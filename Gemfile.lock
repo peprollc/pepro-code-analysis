@@ -30,6 +30,7 @@ PLATFORMS
 
 DEPENDENCIES
   haml
+  sinatra
   sinatra-contrib
 
 BUNDLED WITH
