@@ -6,17 +6,23 @@
 %textarea#code{ raw: "3", col: "4"}
 %button#function analysis
 
-%p#results
+#result_zone
 
 :javascript
-  var code = $("#code");
-  $("#function").on("click", function() {
+  var code = $('#code');
+  $('#function').on('click', function() {
     $.ajax({
-      type: "POST",
-      url: "/analysis",
+      type: 'POST',
+      url: '/analysis',
       data: { code: code.val() },
+      dataType: "json",
       success: function (data) {
-        $("#results").append(data);
+        var result_zone = $('#result_zone');
+        result_zone.empty();
+        error = $('<p>', { class:'error'}).text(data['error']);
+        result = $('<p>', { class:'result'}).text(data['result']);
+        result_zone.append(error);
+        result_zone.append(result);
       }
     });
   });

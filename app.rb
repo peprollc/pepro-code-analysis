@@ -8,6 +8,8 @@ end
 
 post "/analysis" do
   analyze = Analyzer.new params[:code]
-  data = { result: analyze.func }
-  data.to_json
+  if analyze.func
+    data = { result: analyze.stdout, error: analyze.stderr }
+    data.to_json
+  end
 end
