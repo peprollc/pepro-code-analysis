@@ -1,20 +1,23 @@
 %head
   %title code-analysis | pepro
   %script{ type: "text/javascript", src: "https://code.jquery.com/jquery-3.3.1.min.js" }
+  %script{ type: "text/javascript", src: "https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js"}
 
-%h1 code-analysis
-%textarea#code{ raw: "3", col: "4"}
-%button#function analysis
+%a{ href: "/analysis" } To Code Analysis
 
+%h1 code-function
 #result_zone
+#code{ style: "height: 600px;" }
+%button#function exec code
 
 :javascript
-  var code = $('#code');
+  var code = ace.edit('code');
+  code.getSession().setMode("ace/mode/ruby");
   $('#function').on('click', function() {
     $.ajax({
       type: 'POST',
       url: '/program',
-      data: { code: code.val() },
+      data: { code: code.getValue() },
       dataType: "json",
       success: function (data) {
         var result_zone = $('#result_zone');

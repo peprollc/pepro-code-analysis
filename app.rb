@@ -6,6 +6,10 @@ get "/" do
   haml :index
 end
 
+get "/analysis" do
+  haml :analysis
+end
+
 post "/program" do
   program = Program.new params[:code]
   if program.func
